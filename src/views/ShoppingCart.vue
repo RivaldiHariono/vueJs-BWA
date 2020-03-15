@@ -91,7 +91,8 @@
                                     <li class="subtotal mt-3">No. Rekening <span>2208 1996 1403</span></li>
                                     <li class="subtotal mt-3">Nama Penerima <span>Shayna</span></li>
                                 </ul>
-                                <router-link to="/success">I ALREADY PAID</router-link>
+                                <!-- <router-link to="/success">I ALREADY PAID</router-link> -->
+                                <a @click="checkout" href="#"  class="proceed-btn">I Already Paid</a>
                             </div>
                         </div>
                     </div>
@@ -105,6 +106,7 @@
 
 <script>
 import headerAldi from '@/components/headerAldi.vue';
+import axios from 'axios';
 export default {
     name: 'ShoppingCart',
 
@@ -124,6 +126,22 @@ export default {
                 this.keranjangUser.splice(index,1);
                 const parsed = JSON.stringify(this.keranjangUser);
                 localStorage.setItem('keranjangUser', parsed);
+            },
+            checkout(){
+                let productId = this.keranjangUser.map(function(product){
+                    return product.id;
+                });
+                let checkData = {
+                    'name' : this.customerInfo.name,
+                    'email' : this.customerInfo.email,
+                    'number' : this.customerInfo.number,
+                    'address' : this.customerInfo.address,
+                    'total' : this.total,
+                    'status' : 'PENDING',
+                    'transaction_details' : productId
+                }
+                axios.post("http://127.0.0.1:8000/api/checkout",checkData).then(() => this.$router.push('success'))
+                .catch(err => console.log(err));
             }
         },
         mounted(){
