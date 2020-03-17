@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 mt-5" v-if="products.length > 0">
-                    <carousel class="product-slider" :nav=false :autoplay=true :items=3> 
+                    <carousel class="product-slider" :nav=false :autoplay=true :items=3 :loop=true> 
                         <div class="product-item" v-for="itemProduct in products" :key="itemProduct.id">
                             <div class="pi-pic" v-if="itemProduct.galleries.length > 0">
                                 <img v-bind:src="itemProduct.galleries[0].photo" alt="" height="330px" />

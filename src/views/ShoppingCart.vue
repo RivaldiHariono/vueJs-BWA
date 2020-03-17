@@ -18,11 +18,12 @@
 
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
-        <div class="container">
+        <div class="container" v-if="keranjangUser.length > 0">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row">
                         <div class="col-lg-12">
+                            
                             <div class="cart-table">
                                 <table>
                                     <thead>
@@ -33,23 +34,25 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody v-for="keranjang in keranjangUser" :key="keranjang.id">
-                                        <tr>
-                                            <td class="cart-pic first-row">
-                                                <img :src="keranjang.photo" class="img-cart" />
-                                            </td>
-                                            <td class="cart-title first-row text-center">
-                                                <h5>{{keranjang.name}}</h5>
-                                            </td>
-                                            <td class="p-price first-row">Rp{{keranjang.price}}</td>
-                                            <td class="delete-item"><a @click="removeItem(keranjangUser.index)" href="#"><i class="material-icons">
-                                              close
-                                              </i></a></td>
-                                        </tr>
-                                        
-                                    </tbody>
+
+                                        <tbody v-for="keranjang in keranjangUser" :key="keranjang.id">
+                                            
+                                                <tr>
+                                                    <td class="cart-pic first-row">
+                                                        <img :src="keranjang.photo" class="img-cart" />
+                                                    </td>
+                                                    <td class="cart-title first-row text-center">
+                                                        <h5>{{keranjang.name}}</h5>
+                                                    </td>
+                                                    <td class="p-price first-row">Rp{{keranjang.price}}</td>
+                                                    <td class="delete-item"><a @click="removeItem(keranjangUser.index)" href="#"><i class="material-icons">
+                                                    close
+                                                    </i></a></td>
+                                                </tr>
+                                        </tbody>
                                 </table>
                             </div>
+
                         </div>
                         <div class="col-lg-8">
                             <h4 class="mb-4">
@@ -99,13 +102,20 @@
                 </div>
             </div>
         </div>
+
+        <div v-else class="mb-4">
+            <h3> No Data! </h3>
+        </div>
+
     </section>
     <!-- Shopping Cart Section End -->
+    <footerAldi />
 </div>
 </template>
 
 <script>
 import headerAldi from '@/components/headerAldi.vue';
+import footerAldi from '@/components/footerAldi.vue';
 import axios from 'axios';
 export default {
     name: 'ShoppingCart',
@@ -169,6 +179,7 @@ export default {
         },
     components:{
         headerAldi,
+        footerAldi,
     }    
 }
 </script>

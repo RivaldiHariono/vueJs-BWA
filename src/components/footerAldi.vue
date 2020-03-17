@@ -25,8 +25,8 @@
                     <div class="footer-widget text-left">
                         <h5>Information</h5>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#"><router-link to="/about">About Us</router-link></a></li>
+                            <li><a href="#"><router-link to="/shoppingCart">Checkout</router-link></a></li>
                             <li><a href="#">Contact</a></li>
                             <li><a href="#">Serivius</a></li>
                         </ul>

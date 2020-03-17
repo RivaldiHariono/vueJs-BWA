@@ -29,7 +29,7 @@
                                     <img class="product-big-img" :src="default_image"/>
                                 </div>
                                 <carousel class="product-thumbs-track ps-slider" 
-                                :loop=true :autoplay=true :nav=false>
+                                :loop=false :autoplay=true :nav=false>
                                     <div class="pt" 
                                     @click="changeImage(productimg.photo)" 
                                     :class="productimg.photo == is_default ? 'active' : '' " 
